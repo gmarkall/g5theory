@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 cards = {
     'italian_dynamics': {
         'Estinto': 'As quiet as possible',
@@ -211,3 +213,13 @@ cards = {
         'Zu': 'to, too',
     }
 }
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('category', nargs=1)
+    parser.parse_args()
+
+if __name__ == '__main__':
+    import sys
+    sys.exit(main())
