@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-cards = {
+from sys import stdin
+
+all_cards = {
     'italian_dynamics': {
         'Estinto': 'As quiet as possible',
         'Fortepiano': 'Loud then immediately soft',
@@ -214,11 +216,33 @@ cards = {
     }
 }
 
+def test_loop(category):
+    cards = all_cards[category]
+    incorrect = [ word for word in cards ]
+    attempt = 0
+    while incorrect:
+        print("Attempt %s" % attempt)
+        incorrect_this_time = []
+        for word in incorrect:
+            print('\n%s' % word)
+            stdin.readline()
+            print(cards[word])
+            print('\nCorrect?')
+            answer = stdin.readline()[0]
+            if answer not in ('y', 'Y'):
+                incorrect_this_time.append(word)
+        incorrect = incorrect_this_time
+        attempt += 1
+
+    print("All correct!")
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('category', nargs=1)
-    parser.parse_args()
+    parser.add_argument('category')
+    args = parser.parse_args()
+    test_loop(args.category)
 
 if __name__ == '__main__':
     import sys
