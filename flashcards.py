@@ -15,6 +15,7 @@
 # Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
 
 from sys import stdin
+import argparse
 
 all_cards = {
     'italian_dynamics': {
@@ -252,9 +253,10 @@ def test_loop(category):
 
 
 def main():
-    import argparse
+    categories = ', '.join([ category for category in all_cards ])
+    message = 'Category to practice. Categories are: %s' % categories
     parser = argparse.ArgumentParser()
-    parser.add_argument('category')
+    parser.add_argument('category', help=message)
     args = parser.parse_args()
     test_loop(args.category)
 
